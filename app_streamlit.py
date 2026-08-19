@@ -3,7 +3,7 @@ import requests
 
 st.title("Calculadora de Financiamento")
 
-# Campos de texto para o usuário digitar livremente (ex: 50.000,00 ou 1000)
+# Campos de texto para o usuário digitar livremente (ex: 50.000,00 ou 40000)
 valor_str = st.text_input("Valor do produto (R$)", value="")
 taxa_str = st.text_input("Taxa de Juros mensal (%)", value="")
 meses_str = st.text_input("Prazo (meses)", value="")
@@ -12,11 +12,15 @@ def limpar_numero(texto):
     if not texto:
         return 0.0
     # Remove os pontos de milhar e substitui a vírgula decimal por ponto
-    texto_limpo = texto.replace(",", "").replace(".", ",")
+    texto_limpo = texto.replace(".", "").replace(",", ".")
     try:
         return float(texto_limpo)
     except ValueError:
         return 0.0
+
+def formatar_br(valor):
+    # Formata no padrão brasileiro (ponto para milhares, vírgula para decimais)
+    return f"{valor:,.2f}".replace(",", "_").replace(".", ",").replace("_", ".")
 
 if st.button("Calcular Financiamento"):
     # Limpa e converte os valores digitados
@@ -41,9 +45,9 @@ if st.button("Calcular Financiamento"):
             st.error(resultado["erro"])
         else:
             st.success("Cálculo realizado com sucesso!")
-            st.metric("Parcela Mensal", f"R$ {resultado['Parcela mensal']:.,2f}")
-            st.metric("Valor Total", f"R$ {resultado['Valor total']:.,2f}")
-            st.metric("Total de Juros", f"R$ {resultado['Valor total de juros']:.,2f}")
+            st.metric("Parcela Mensal", f"R$ {formatar_br(resultado['Parcela mensal'])}")
+            st.metric("Valor Total", f"R$ {formatar_br(resultado['Valor total'])}")
+            st.metric("Total de Juros", f"R$ {formatar_br(resultado['Valor total de juros'])}")
             
     except Exception as e:
         st.error(f"Erro de conexão: {e}")
