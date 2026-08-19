@@ -19,7 +19,7 @@ if st.button("Calcular Financiamento"):
     # Fazendo a requisição para a sua API local
     # Note que usamos 'params=' para enviar via query string
     try:
-        response = requests.post("https://calculadora-de-financiamento.onrender.com/Calculadora", params=params)
+        response = requests.post("http://localhost:8000/Calculadora", params=params)
         resultado = response.json()
         
         # Verifica se deu erro ou se tem o resultado
@@ -33,4 +33,4 @@ if st.button("Calcular Financiamento"):
             st.metric("Total de Juros", f"R$ {resultado['Valor total de juros']}")
             
     except Exception as e:
-        st.error("Não foi possível conectar ao servidor. Certifique-se de que o FastAPI está rodando!")
+        st.error(f"Erro: {e}")
