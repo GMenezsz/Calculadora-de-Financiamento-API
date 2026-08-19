@@ -19,7 +19,7 @@ if st.button("Calcular Financiamento"):
     # Fazendo a requisição para a sua API local
     # Note que usamos 'params=' para enviar via query string
     try:
-        response = requests.post("https://calculadora-de-financiamento.onrender.com", params=params)
+        response = requests.post("https://calculadora-de-financiamento.onrender.com/Calculadora", params=params)
         resultado = response.json()
         
         # Verifica se deu erro ou se tem o resultado
