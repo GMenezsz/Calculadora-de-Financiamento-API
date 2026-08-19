@@ -20,9 +20,9 @@ def api_calculadora(valor: float, taxa_juros: float, meses: int):
         return {"erro": "O valor deve ser maior do que 0."}
 
     elif resultado_taxa is not True:
-        return {"erro": "O campo da taxa de juros não pode ser negativo."}
+        return {"erro": "O campo da taxa de juros não pode ser negativo e/ou não pode ficar vazio."}
 
     elif resultado_prazo is not True:
-        return {"erro": "O campo do prazo não pode ser negativo."}
+        return {"erro": "O campo do prazo não pode ser negativo e/ou não pode ficar vazio.."}
     else:
         return calculadora(valor_produto, taxa, prazo)
