@@ -12,7 +12,7 @@ def limpar_numero(texto):
     if not texto:
         return 0.0
     # Remove os pontos de milhar e substitui a vírgula decimal por ponto
-    texto_limpo = texto.replace(".", "").replace(",", ".")
+    texto_limpo = texto.replace(",", "").replace(".", ",")
     try:
         return float(texto_limpo)
     except ValueError:
