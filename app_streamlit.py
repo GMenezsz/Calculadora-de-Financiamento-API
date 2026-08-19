@@ -1,5 +1,5 @@
 import streamlit as st
-import requests
+import calculadora
 
 st.title("Calculadora de Financiamento")
 
