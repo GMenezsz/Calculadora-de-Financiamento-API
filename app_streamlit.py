@@ -42,7 +42,7 @@ if st.button("Calcular Financiamento"):
         else:
             st.success("Cálculo realizado com sucesso!")
             st.metric("Parcela Mensal", f"R$ {resultado['Parcela mensal']:,.2f}")
-            st.metric("Valor Total", f"R$ {resultado['Valor total']:.,2f}")
+            st.metric("Valor Total", f"R$ {resultado['Valor total']:,.2f}")
             st.metric("Total de Juros", f"R$ {resultado['Valor total de juros']:,.2f}")
             
     except Exception as e:
